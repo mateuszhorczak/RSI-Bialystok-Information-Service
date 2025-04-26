@@ -1,6 +1,7 @@
 package org.service.information.bialystok.model;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
