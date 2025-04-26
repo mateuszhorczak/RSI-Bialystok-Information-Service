@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
 
 @WebService(endpointInterface = "org.service.information.bialystok.service.EventService")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT)
-@MTOM(enabled = true, threshold = 1024)@HandlerChain(file = "handler-chain.xml")
+@MTOM(enabled = true, threshold = 1024)
+@HandlerChain(file = "handler-chain.xml")
 public class EventServiceImpl implements EventService {
     private List<Event> events = new ArrayList<>();
 
