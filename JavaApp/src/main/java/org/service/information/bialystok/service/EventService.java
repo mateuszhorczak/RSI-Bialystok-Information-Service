@@ -4,6 +4,7 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
+import jakarta.xml.bind.annotation.XmlMimeType;
 import org.service.information.bialystok.model.Event;
 
 import java.time.LocalDate;
@@ -28,5 +29,6 @@ public interface EventService {
     void updateEvent(@WebParam(name = "event") Event event);
 
     @WebMethod
+    @XmlMimeType("application/pdf")
     byte[] getEventsReportPDF(@WebParam(name = "month") int month, @WebParam(name = "year") int year);
 }
