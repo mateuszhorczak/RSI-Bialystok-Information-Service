@@ -6,6 +6,7 @@ import jakarta.jws.HandlerChain;
 import jakarta.xml.ws.soap.MTOM;
 import org.service.information.bialystok.model.Event;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,19 @@ public class EventServiceImpl implements EventService {
     @Override
     public byte[] getEventsReportPDF(int month, int year) {
         // Tu można dodać logikę generowania PDF, np. za pomocą iText
-        return new byte[0]; // Placeholder
-    }
+        //return new byte[0]; // Placeholder
+            List<Event> filteredEvents = events.stream()
+                    .filter(event -> event.getMonth() == month && event.getYear() == year)
+                    .collect(Collectors.toList());
+
+            try {
+                EventsReportPdfGenerator generator = new EventsReportPdfGenerator();
+                return generator.generate(filteredEvents);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return new byte[0];
+            }
+        }
+
 }
+
