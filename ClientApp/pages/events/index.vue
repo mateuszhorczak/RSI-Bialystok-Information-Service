@@ -2,7 +2,5 @@
 </script>
 
 <template>
-  <p>
-    <slot />
-  </p>
+  <p>events</p>
 </template>
