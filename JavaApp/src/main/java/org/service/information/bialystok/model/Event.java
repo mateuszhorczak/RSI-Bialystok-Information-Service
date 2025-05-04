@@ -4,9 +4,6 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import java.time.LocalDate;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -16,8 +13,7 @@ public class Event {
     @XmlElement
     private String type;
     @XmlElement
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate date;
+    private String date;
     @XmlElement
     private int week;
     @XmlElement
@@ -43,11 +39,11 @@ public class Event {
         this.type = type;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

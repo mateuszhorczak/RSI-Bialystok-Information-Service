@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<handler-chains xmlns="https://jakarta.ee/xml/ns/jakartaee">
-    <handler-chain>
-        <handler>
-            <handler-name>LoggingHandler</handler-name>
-            <handler-class>org.service.information.bialystok.handler.LoggingHandler</handler-class>
-        </handler>
-    </handler-chain>
-</handler-chains>
+<jakartaee:handler-chains
+        xmlns:jakartaee="https://jakarta.ee/xml/ns/jakartaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/jakartaee_web_services_metadata_handler_3_0.xsd">
+
+    <jakartaee:handler-chain>
+        <jakartaee:handler>
+            <jakartaee:handler-name>MTOMHandler</jakartaee:handler-name>
+            <jakartaee:handler-class>org.service.information.bialystok.handler.MTOMHandler</jakartaee:handler-class>
+        </jakartaee:handler>
+        <jakartaee:handler>
+            <jakartaee:handler-name>LoggingHandler</jakartaee:handler-name>
+            <jakartaee:handler-class>org.service.information.bialystok.handler.LoggingHandler</jakartaee:handler-class>
+        </jakartaee:handler>
+    </jakartaee:handler-chain>
+</jakartaee:handler-chains>
+
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>
+        <handler-chains xmlns="https://jakarta.ee/xml/ns/jakartaee">
+            <handler-chain>
+                <handler>
+                    <handler-name>LoggingHandler</handler-name>
+                    <handler-class>org.service.information.bialystok.handler.LoggingHandler</handler-class>
+                </handler>
+            </handler-chain>
+        </handler-chains>-->

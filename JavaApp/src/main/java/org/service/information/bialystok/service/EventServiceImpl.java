@@ -1,30 +1,27 @@
 package org.service.information.bialystok.service;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import jakarta.jws.HandlerChain;
-import jakarta.xml.bind.annotation.XmlMimeType;
 import jakarta.xml.ws.soap.MTOM;
 import org.service.information.bialystok.model.Event;
 
-import java.io.ByteArrayOutputStream;
-import java.time.LocalDate;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;;
+import java.util.stream.Collectors;
 
 @WebService(endpointInterface = "org.service.information.bialystok.service.EventService")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT)
-@MTOM(enabled = true, threshold = 0)
-//@HandlerChain(file = "handler-chain.xml") TODO: bez tego dziala, a z tym nie - naprawic
+@MTOM(enabled = true, threshold = 1024)
+@HandlerChain(file = "handler-chain.xml")
 public class EventServiceImpl implements EventService {
     private List<Event> events = new ArrayList<>();
 
     @Override
-    public List<Event> getEventsByDay(LocalDate date) {
+    public List<Event> getEventsByDay(String date) {
+        System.out.println("getEventsByDay called with date: " + date);
+        System.out.println(events);
         return events.stream()
                 .filter(event -> event.getDate().equals(date))
                 .collect(Collectors.toList());
@@ -32,6 +29,8 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByWeek(int week, int year) {
+        System.out.println("getEventsByWeek called with week: " + week + ", year: " + year);
+        System.out.println(events);
         return events.stream()
                 .filter(event -> event.getWeek() == week && event.getYear() == year)
                 .collect(Collectors.toList());
@@ -39,6 +38,8 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event getEventInfo(String eventName) {
+        System.out.println("getEventInfo called with eventName: " + eventName);
+        System.out.println(events);
         return events.stream()
                 .filter(event -> event.getName().equals(eventName))
                 .findFirst()
@@ -47,11 +48,15 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void addEvent(Event event) {
+        System.out.println("addEvent called with event: " + event);
         events.add(event);
+        System.out.println(events);
     }
 
     @Override
     public void updateEvent(Event event) {
+        System.out.println("updateEvent called with event: " + event);
+        System.out.println(events);
         Event existingEvent = getEventInfo(event.getName());
         if (existingEvent != null) {
             events.remove(existingEvent);
@@ -60,33 +65,20 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @XmlMimeType("application/pdf")
     public byte[] getEventsReportPDF(int month, int year) {
-        try {
-            List<Event> filtered = events.stream()
-                    .filter(e -> e.getMonth() == month && e.getYear() == year)
+        // Tu można dodać logikę generowania PDF, np. za pomocą iText
+        //return new byte[0]; // Placeholder
+            List<Event> filteredEvents = events.stream()
+                    .filter(event -> event.getMonth() == month && event.getYear() == year)
                     .collect(Collectors.toList());
 
-            // Log the details of the PDF generation TODO: remove
-            System.out.println("Generating PDF for month: " + month + ", year: " + year);
-            System.out.println("Events count: " + filtered.size());
-            filtered.forEach(e -> System.out.println(" - " + e.getName()));
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            Document document = new Document();
-            PdfWriter.getInstance(document, baos);
-
-            document.open();
-            document.add(new Paragraph("Raport wydarzen - " + month + "/" + year));
-
-            for (Event e : filtered) {
-                document.add(new Paragraph(e.getName() + " - " + e.getDate()));
+            try {
+                EventsReportPdfGenerator generator = new EventsReportPdfGenerator();
+                return generator.generate(filteredEvents);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return new byte[0];
             }
-
-            document.close();
-            return baos.toByteArray();
-        } catch (Exception e) {
-            throw new RuntimeException("Błąd generowania PDF", e);
         }
-    }
+
 }
