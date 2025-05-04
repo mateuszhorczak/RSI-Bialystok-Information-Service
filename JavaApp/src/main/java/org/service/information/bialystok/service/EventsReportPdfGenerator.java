@@ -141,7 +141,7 @@ public class EventsReportPdfGenerator {
         contentStream.setNonStrokingColor(Color.BLACK);
 
         String dateStr = (event.getDate() != null)
-                ? event.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH))
+                ? event.getDate()
                 : "Brak daty"; // Fallback dla null
 
 

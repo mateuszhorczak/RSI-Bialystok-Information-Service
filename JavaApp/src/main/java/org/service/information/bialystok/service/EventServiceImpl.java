@@ -7,7 +7,6 @@ import jakarta.xml.ws.soap.MTOM;
 import org.service.information.bialystok.model.Event;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +19,9 @@ public class EventServiceImpl implements EventService {
     private List<Event> events = new ArrayList<>();
 
     @Override
-    public List<Event> getEventsByDay(LocalDate date) {
+    public List<Event> getEventsByDay(String date) {
+        System.out.println("getEventsByDay called with date: " + date);
+        System.out.println(events);
         return events.stream()
                 .filter(event -> event.getDate().equals(date))
                 .collect(Collectors.toList());
@@ -28,6 +29,8 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByWeek(int week, int year) {
+        System.out.println("getEventsByWeek called with week: " + week + ", year: " + year);
+        System.out.println(events);
         return events.stream()
                 .filter(event -> event.getWeek() == week && event.getYear() == year)
                 .collect(Collectors.toList());
@@ -35,6 +38,8 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event getEventInfo(String eventName) {
+        System.out.println("getEventInfo called with eventName: " + eventName);
+        System.out.println(events);
         return events.stream()
                 .filter(event -> event.getName().equals(eventName))
                 .findFirst()
@@ -43,11 +48,15 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void addEvent(Event event) {
+        System.out.println("addEvent called with event: " + event);
         events.add(event);
+        System.out.println(events);
     }
 
     @Override
     public void updateEvent(Event event) {
+        System.out.println("updateEvent called with event: " + event);
+        System.out.println(events);
         Event existingEvent = getEventInfo(event.getName());
         if (existingEvent != null) {
             events.remove(existingEvent);

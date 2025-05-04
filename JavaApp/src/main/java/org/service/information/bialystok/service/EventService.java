@@ -6,14 +6,13 @@ import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 import org.service.information.bialystok.model.Event;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT)
 public interface EventService {
     @WebMethod
-    List<Event> getEventsByDay(@WebParam(name = "date") LocalDate date);
+    List<Event> getEventsByDay(@WebParam(name = "date") String date);
 
     @WebMethod
     List<Event> getEventsByWeek(@WebParam(name = "week") int week, @WebParam(name = "year") int year);
