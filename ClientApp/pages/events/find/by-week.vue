@@ -1,6 +1,7 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <p>all events</p>
+  <p>find by week</p>
 </template>

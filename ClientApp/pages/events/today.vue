@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <p>today</p>
+  <p>find today</p>
 </template>

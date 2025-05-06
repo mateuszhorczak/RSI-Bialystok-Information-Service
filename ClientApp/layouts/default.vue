@@ -2,9 +2,11 @@
 </script>
 
 <template>
-  <AtomsNavigation />
-  <LayoutsMainWrapper>
-    <NuxtPage />
-  </LayoutsMainWrapper>
-  <LayoutsFooter />
+  <PagesContainer>
+    <AtomsNavigation />
+    <LayoutsMainWrapper>
+      <NuxtPage />
+    </LayoutsMainWrapper>
+    <LayoutsFooter />
+  </PagesContainer>
 </template>

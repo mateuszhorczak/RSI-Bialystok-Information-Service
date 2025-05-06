@@ -2,5 +2,6 @@
 </script>
 
 <template>
-  <p>find</p>
+  <MoleculesFormFindByDate />
+  <OrganismsEvents />
 </template>
