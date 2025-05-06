@@ -8,6 +8,7 @@ import org.service.information.bialystok.model.Event;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,11 +34,16 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEventByName(String name) {
+    public List<Event> getEventsByName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return Collections.emptyList();
+        }
+        String searchTerm = name.toLowerCase();
+
         return events.stream()
-                .filter(event -> event.getName().equals(name))
-                .findFirst()
-                .orElse(null);
+                .filter(event -> event.getName() != null &&
+                        event.getName().toLowerCase().contains(searchTerm))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -46,8 +52,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void updateEvent(Event event) {
-        Event existingEvent = getEventByName(event.getName());
+    public void updateEvent(Event event) { // TODO: to nie bedzie dzialac, trzeba dodac id i nowa metoda by pobierało po id
+        List<Event> existingEvent = getEventsByName(event.getName());
         if (existingEvent != null) {
             events.remove(existingEvent);
             events.add(event);

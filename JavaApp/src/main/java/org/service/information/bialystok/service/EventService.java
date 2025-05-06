@@ -18,7 +18,7 @@ public interface EventService {
     List<Event> getEventsByWeek(@WebParam(name = "week") int week, @WebParam(name = "year") int year);
 
     @WebMethod
-    Event getEventByName(@WebParam(name = "name") String name);
+    List<Event> getEventsByName(@WebParam(name = "name") String name);
 
     @WebMethod
     void addEvent(@WebParam(name = "event") Event event);

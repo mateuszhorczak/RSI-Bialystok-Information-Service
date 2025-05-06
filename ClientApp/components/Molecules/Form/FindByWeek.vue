@@ -5,17 +5,20 @@ import type { FormSubmitEvent } from '@nuxt/ui'
 const eventStore = useEventStore()
 
 const schema = z.object({
-  name: z.string().trim().min(2),
+  week: z.number(),
+  year: z.number(),
 })
 
 type Schema = z.output<typeof schema>
 
 const state = reactive<Partial<Schema>>({
-  name: undefined,
+  week: undefined,
+  year: undefined,
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  await eventStore.getEventsByName(event.data.name)
+  console.log('sss')
+  await eventStore.getEventsByWeek(event.data.week, event.data.year)
 }
 </script>
 
@@ -27,10 +30,25 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     @submit="onSubmit"
   >
     <UFormField
-      label="Nazwa wydarzenia"
-      name="event-name"
+      label="Tydzień roku"
+      name="event-week"
     >
-      <UInput v-model="state.name" />
+      <UInput
+        v-model="state.week"
+        type="number"
+        placeholder="22"
+      />
+    </UFormField>
+
+    <UFormField
+      label="Rok"
+      name="event-year"
+    >
+      <UInput
+        v-model="state.year"
+        type="number"
+        placeholder="2025"
+      />
     </UFormField>
 
     <AtomsButtonContained

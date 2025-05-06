@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
     const result = await new Promise((resolve, reject) => {
       // @ts-expect-error silence error
-      client.getEventByName({ name }, (err, result) => {
+      client.getEventsByName({ name }, (err, result) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         err ? reject(err) : resolve(result)
       })
