@@ -18,9 +18,23 @@ const items = ref<NavigationMenuItem[]>([
     to: '/events/today',
   },
   {
-    label: 'Znajdź',
+    label: 'Wyszukaj wydarzenia',
     icon: 'i-mdi-magnify',
-    to: '/events/find',
+    children: [{
+      label: 'po nazwie',
+      icon: 'i-mdi-text-box-search',
+      to: '/events/find',
+    },
+    {
+      label: 'po dacie',
+      icon: 'i-mdi-calendar-filter',
+      to: '/events/find/by-date',
+    },
+    {
+      label: 'po tygodniu',
+      icon: 'i-mdi-calendar-week',
+      to: '/events/find/by-week',
+    }],
   },
   {
     label: 'Stwórz',
