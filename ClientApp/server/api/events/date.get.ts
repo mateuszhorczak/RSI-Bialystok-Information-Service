@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   if (!date) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Missing eventName parameter',
+      statusMessage: 'Missing name parameter',
     })
   }
 
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
     const result = await new Promise((resolve, reject) => {
       // @ts-expect-error silence error
-      client.getEventsByDay({ date }, (err, result) => {
+      client.getEventsByDate({ date }, (err, result) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         err ? reject(err) : resolve(result)
       })

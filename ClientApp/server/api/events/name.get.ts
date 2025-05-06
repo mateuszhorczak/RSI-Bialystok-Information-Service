@@ -3,12 +3,12 @@ import { defineEventHandler, getQuery } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
-  const eventName = query.name
+  const name = query.name
 
-  if (!eventName) {
+  if (!name) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Missing eventName parameter',
+      statusMessage: 'Missing name parameter',
     })
   }
 
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
 
     const result = await new Promise((resolve, reject) => {
       // @ts-expect-error silence error
-      client.getEventInfo({ eventName }, (err, result) => {
+      client.getEventByName({ name }, (err, result) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         err ? reject(err) : resolve(result)
       })

@@ -19,7 +19,7 @@ public class EventServiceImpl implements EventService {
     private List<Event> events = new ArrayList<>();
 
     @Override
-    public List<Event> getEventsByDay(String date) {
+    public List<Event> getEventsByDate(String date) {
         return events.stream()
                 .filter(event -> event.getDate().equals(date))
                 .collect(Collectors.toList());
@@ -33,9 +33,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getEventInfo(String eventName) {
+    public Event getEventByName(String name) {
         return events.stream()
-                .filter(event -> event.getName().equals(eventName))
+                .filter(event -> event.getName().equals(name))
                 .findFirst()
                 .orElse(null);
     }
@@ -47,7 +47,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void updateEvent(Event event) {
-        Event existingEvent = getEventInfo(event.getName());
+        Event existingEvent = getEventByName(event.getName());
         if (existingEvent != null) {
             events.remove(existingEvent);
             events.add(event);
