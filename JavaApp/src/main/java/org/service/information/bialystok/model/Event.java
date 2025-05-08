@@ -8,6 +8,8 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Event {
+    @XmlElement(defaultValue = "0")
+    private int id;
     @XmlElement
     private String name;
     @XmlElement
@@ -22,6 +24,14 @@ public class Event {
     private int year;
     @XmlElement
     private String description;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -76,6 +86,21 @@ public class Event {
     }
 
     public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    public Event() {
+    }
+
+    public Event(int id, String name, String type, String date, int week, int month, int year, String description) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.date = date;
+        this.week = week;
+        this.month = month;
+        this.year = year;
         this.description = description;
     }
 }

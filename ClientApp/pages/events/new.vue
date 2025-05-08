@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <p>new</p>
+  <MoleculesFormCreateEvent />
 </template>

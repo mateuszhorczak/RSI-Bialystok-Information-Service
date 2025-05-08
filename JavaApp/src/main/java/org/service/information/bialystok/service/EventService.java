@@ -28,4 +28,7 @@ public interface EventService {
 
     @WebMethod
     byte[] getEventsReportPDF(@WebParam(name = "month") int month, @WebParam(name = "year") int year);
+
+    @WebMethod
+    Event getEventById(@WebParam(name = "id") int id);
 }

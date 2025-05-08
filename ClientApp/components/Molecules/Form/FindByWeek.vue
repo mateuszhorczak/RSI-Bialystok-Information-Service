@@ -17,7 +17,6 @@ const state = reactive<Partial<Schema>>({
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  console.log('sss')
   await eventStore.getEventsByWeek(event.data.week, event.data.year)
 }
 </script>

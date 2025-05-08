@@ -3,8 +3,16 @@ import type { Event } from '~/types'
 export const useEventStore = defineStore('eventStore', () => {
   const events = ref<Event[]>([])
 
-  const addEvent = async () => {
-    console.log('add event')
+  const addEvent = async (event: Event) => {
+    try {
+      await useFetch('/api/events', {
+        method: 'POST',
+        body: event,
+      })
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
 
   const updateEvent = async () => {

@@ -3,10 +3,10 @@ const eventStore = useEventStore()
 </script>
 
 <template>
-  <!-- TODO: use id instead name for key in for -->
   <MoleculesEvent
     v-for="event in eventStore.events"
-    :key="event.name"
+    :id="event.id"
+    :key="event.id"
     :name="event.name"
     :description="event.description"
     :type="event.type"
