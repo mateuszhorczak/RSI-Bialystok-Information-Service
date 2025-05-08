@@ -37,7 +37,8 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> getEventsByName(String name) {
         if (name == null || name.trim().isEmpty()) {
-            return Collections.emptyList();
+//            return Collections.emptyList();
+            return events.stream().toList();
         }
         String searchTerm = name.toLowerCase();
 

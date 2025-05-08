@@ -5,13 +5,6 @@ export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const name = query.name
 
-  if (!name) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Missing name parameter',
-    })
-  }
-
   const wsdlUrl = 'https://localhost:8443/eventservice?wsdl'
 
   try {

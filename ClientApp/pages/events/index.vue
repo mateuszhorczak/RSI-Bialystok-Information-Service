@@ -1,6 +1,9 @@
 <script setup lang="ts">
+const eventStore = useEventStore()
+
+await eventStore.getEventsByName('')
 </script>
 
 <template>
-  <p>all events</p>
+  <OrganismsEvents />
 </template>
