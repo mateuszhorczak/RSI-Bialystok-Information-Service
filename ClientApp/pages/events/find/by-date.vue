@@ -2,6 +2,7 @@
 </script>
 
 <template>
+  <AtomsSubHeading>Wyszukaj wydarzenia po dacie</AtomsSubHeading>
   <MoleculesFormFindByDate />
   <OrganismsEvents />
 </template>

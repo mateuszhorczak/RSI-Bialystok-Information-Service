@@ -5,6 +5,7 @@ const eventData = ref<Event>()
 </script>
 
 <template>
+  <AtomsSubHeading>Wyszukaj wydarzenia po nazwie</AtomsSubHeading>
   <MoleculesFormFindByName v-model:event-data="eventData" />
   <OrganismsEvents />
 </template>

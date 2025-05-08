@@ -5,5 +5,6 @@ await eventStore.getEventsByName('')
 </script>
 
 <template>
+  <AtomsSubHeading>Wszystkie wydarzenia</AtomsSubHeading>
   <OrganismsEvents />
 </template>
