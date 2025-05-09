@@ -42,6 +42,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   const router = useRouter()
   await router.push('/events')
 }
+
+const deleteEvent = async (id: number) => {
+  await eventStore.deleteEvent(id)
+  const router = useRouter()
+  await router.push('/events')
+}
 </script>
 
 <template>
@@ -89,6 +95,16 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       label="Edytuj"
       size="lg"
       type="submit"
+    />
+
+    <AtomsButtonContained
+      icon="i-mdi-calendar-remove"
+      label="Usuń"
+      size="lg"
+      color="error"
+      type="button"
+      class="ml-2"
+      @click="deleteEvent(props.id)"
     />
   </UForm>
 </template>

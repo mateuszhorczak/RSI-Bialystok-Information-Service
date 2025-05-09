@@ -27,6 +27,9 @@ public interface EventService {
     void updateEvent(@WebParam(name = "event") Event event);
 
     @WebMethod
+    void deleteEvent(@WebParam(name = "id") int id);
+
+    @WebMethod
     byte[] getEventsReportPDF(@WebParam(name = "month") int month, @WebParam(name = "year") int year);
 
     @WebMethod

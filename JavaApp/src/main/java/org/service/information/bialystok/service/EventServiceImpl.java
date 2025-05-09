@@ -65,6 +65,14 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public void deleteEvent(int id) {
+        Event eventToDelete = getEventById(id);
+        if (eventToDelete != null) {
+            events.remove(eventToDelete);
+        }
+    }
+
+    @Override
     public byte[] getEventsReportPDF(int month, int year) {
         List<Event> filteredEvents = events.stream()
                 .filter(event -> event.getMonth() == month && event.getYear() == year)

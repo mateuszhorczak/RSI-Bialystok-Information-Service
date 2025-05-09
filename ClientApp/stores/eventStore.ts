@@ -31,6 +31,18 @@ export const useEventStore = defineStore('eventStore', () => {
     }
   }
 
+  const deleteEvent = async (id: number) => {
+    try {
+      await useFetch('/api/events/single', {
+        method: 'DELETE',
+        body: { id },
+      })
+    }
+    catch (error) {
+      console.error(error)
+    }
+  }
+
   const getEventPdf = async (month: number, year: number) => {
     try {
       const { data } = await useFetch('/api/events/pdf', {
@@ -116,6 +128,7 @@ export const useEventStore = defineStore('eventStore', () => {
     events,
     addEvent,
     updateEvent,
+    deleteEvent,
     getEventPdf,
     getEventsByDate,
     getEventsByName,
