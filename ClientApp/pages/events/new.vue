@@ -2,6 +2,6 @@
 </script>
 
 <template>
-  <AtomsSubHeading>Dodaj nowe wydarzenie</AtomsSubHeading>
+  <AtomsSubHeading class="my-4">Dodaj nowe wydarzenie</AtomsSubHeading>
   <MoleculesFormCreateEvent />
 </template>

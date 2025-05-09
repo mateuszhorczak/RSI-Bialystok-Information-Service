@@ -4,7 +4,7 @@ eventStore.clearEventsList()
 </script>
 
 <template>
-  <AtomsSubHeading>Wyszukaj wydarzenia po tygodniu</AtomsSubHeading>
+  <AtomsSubHeading class="my-4">Wyszukaj wydarzenia po tygodniu</AtomsSubHeading>
   <MoleculesFormFindByWeek />
   <OrganismsEvents />
 </template>

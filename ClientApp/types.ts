@@ -10,6 +10,7 @@ export interface Event {
 }
 
 export interface BaseEvent {
+  id: number
   name: string
   type: string
   date: string

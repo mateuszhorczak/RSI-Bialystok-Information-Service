@@ -8,7 +8,7 @@ eventStore.clearEventsList()
 </script>
 
 <template>
-  <AtomsSubHeading>Wyszukaj wydarzenia po nazwie</AtomsSubHeading>
+  <AtomsSubHeading class="my-4">Wyszukaj wydarzenia po nazwie</AtomsSubHeading>
   <MoleculesFormFindByName v-model:event-data="eventData" />
   <OrganismsEvents />
 </template>

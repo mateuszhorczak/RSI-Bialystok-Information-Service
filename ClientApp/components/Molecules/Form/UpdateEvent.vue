@@ -3,11 +3,14 @@ import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 import { CalendarDate } from '@internationalized/date'
 import { getWeekNumber } from '~/utils'
+import type { BaseEvent } from '~/types'
+
+const props = defineProps<BaseEvent>()
 
 const eventStore = useEventStore()
 
-const currentDate = new Date()
-const date = shallowRef(new CalendarDate(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate()))
+const [year, month, day]: number[] = props.date.split('-').map(Number)
+const date = shallowRef(new CalendarDate(year, month, day))
 
 const schema = z.object({
   name: z.string().trim().min(2),
@@ -18,9 +21,9 @@ const schema = z.object({
 type Schema = z.output<typeof schema>
 
 const state = reactive<Partial<Schema>>({
-  name: undefined,
-  type: undefined,
-  description: undefined,
+  name: props.name,
+  type: props.type,
+  description: props.description,
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
@@ -35,7 +38,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     week: getWeekNumber(date.value),
   }
 
-  await eventStore.addEvent(newEvent)
+  await eventStore.updateEvent(newEvent)
   const router = useRouter()
   await router.push('/events')
 }
@@ -82,8 +85,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       <AtomsButtonCalendar v-model:date="date" />
     </UFormField>
     <AtomsButtonContained
-      icon="i-mdi-calendar-plus"
-      label="Stwórz"
+      icon="i-mdi-calendar-edit"
+      label="Edytuj"
       size="lg"
       type="submit"
     />

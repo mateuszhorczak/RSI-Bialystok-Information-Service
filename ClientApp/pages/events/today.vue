@@ -9,6 +9,6 @@ await eventStore.getEventsByDate(date.value.toString())
 </script>
 
 <template>
-  <AtomsSubHeading>Dzisiejsze wydarzenia</AtomsSubHeading>
+  <AtomsSubHeading class="my-4">Dzisiejsze wydarzenia</AtomsSubHeading>
   <OrganismsEvents />
 </template>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const eventStore = useEventStore()
+
+const router = useRouter()
 </script>
 
 <template>
@@ -15,6 +17,8 @@ const eventStore = useEventStore()
       :month="event.month"
       :year="event.year"
       :date="event.date"
+      class="cursor-pointer"
+      @click="router.push(`/events/${event.id}`)"
     />
   </div>
 </template>

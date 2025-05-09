@@ -1,4 +1,4 @@
-import type { Event } from '~/types'
+import type { Event, BaseEvent } from '~/types'
 
 export const useEventStore = defineStore('eventStore', () => {
   const events = ref<Event[]>([])
@@ -19,8 +19,16 @@ export const useEventStore = defineStore('eventStore', () => {
     }
   }
 
-  const updateEvent = async () => {
-    console.log('update event')
+  const updateEvent = async (event: Event) => {
+    try {
+      await useFetch('/api/events/single', {
+        method: 'PATCH',
+        body: event,
+      })
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
 
   const getEventPdf = async () => {
@@ -69,6 +77,24 @@ export const useEventStore = defineStore('eventStore', () => {
     }
   }
 
+  const eventId = ref(0)
+  const { data: singleEvent, refresh: refreshSingleEvent, error: errorFetchSingleEvent } = useFetch<BaseEvent>('/api/events/single', {
+    query: { id: eventId },
+    // @ts-expect-error silence transform type error
+    transform: response => response.data,
+    lazy: true,
+    watch: [eventId],
+  })
+
+  const fetchSingleEvent = async (id: number) => {
+    clearEventsList()
+    eventId.value = id
+    await refreshSingleEvent()
+    if (errorFetchSingleEvent.value) {
+      console.error(errorFetchSingleEvent.value)
+    }
+  }
+
   return {
     events,
     addEvent,
@@ -78,5 +104,7 @@ export const useEventStore = defineStore('eventStore', () => {
     getEventsByName,
     getEventsByWeek,
     clearEventsList,
+    singleEvent,
+    fetchSingleEvent,
   }
 })
