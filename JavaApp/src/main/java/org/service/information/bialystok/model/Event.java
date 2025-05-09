@@ -4,20 +4,18 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import java.time.LocalDate;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Event {
+    @XmlElement(defaultValue = "0")
+    private int id;
     @XmlElement
     private String name;
     @XmlElement
     private String type;
     @XmlElement
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
-    private LocalDate date;
+    private String date;
     @XmlElement
     private int week;
     @XmlElement
@@ -26,6 +24,14 @@ public class Event {
     private int year;
     @XmlElement
     private String description;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -43,11 +49,11 @@ public class Event {
         this.type = type;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -80,6 +86,21 @@ public class Event {
     }
 
     public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    public Event() {
+    }
+
+    public Event(int id, String name, String type, String date, int week, int month, int year, String description) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.date = date;
+        this.week = week;
+        this.month = month;
+        this.year = year;
         this.description = description;
     }
 }

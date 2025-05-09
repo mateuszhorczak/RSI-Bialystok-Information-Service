@@ -2,7 +2,6 @@
 </script>
 
 <template>
-  <p>
-    <slot />
-  </p>
+  <OrganismsEvents />
+  <OrganismsEventEdition />
 </template>

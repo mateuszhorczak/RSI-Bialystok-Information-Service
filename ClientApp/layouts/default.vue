@@ -1,11 +1,12 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
-  <div class="flex">
-    <div class="bg-neutral-200 p-4">
+  <PagesContainer>
+    <AtomsNavigation />
+    <LayoutsMainWrapper>
       <NuxtPage />
-    </div>
-  </div>
+    </LayoutsMainWrapper>
+    <LayoutsFooter />
+  </PagesContainer>
 </template>
