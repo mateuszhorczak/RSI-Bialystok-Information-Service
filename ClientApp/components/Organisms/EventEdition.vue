@@ -8,7 +8,9 @@ await eventStore.fetchSingleEvent(id_num)
 </script>
 
 <template>
-  <AtomsSubHeading class="my-4">Edycja wydarzenia</AtomsSubHeading>
+  <AtomsSubHeading class="my-4">
+    Edycja wydarzenia
+  </AtomsSubHeading>
   <MoleculesFormUpdateEvent
     v-if="eventStore.singleEvent"
     :id="eventStore.singleEvent.id"

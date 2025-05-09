@@ -1,9 +1,10 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
   <AtomsSubHeading class="my-4">
-    Dodaj nowe wydarzenie
+    Wyeksportuj wydarzenia do pliku pdf
   </AtomsSubHeading>
-  <MoleculesFormCreateEvent />
+  <MoleculesFormExportPdf />
 </template>

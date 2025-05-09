@@ -6,7 +6,7 @@
     Białostocki serwis informacyjny
   </AtomsHeading>
   <NuxtImg
-      src="/images/bialystok.jpg"
-      class="shadow-xl rounded-xl"
+    src="/images/bialystok.jpg"
+    class="shadow-xl rounded-xl"
   />
 </template>

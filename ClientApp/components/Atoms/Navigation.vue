@@ -41,6 +41,11 @@ const items = ref<NavigationMenuItem[]>([
     icon: 'i-mdi-plus-circle',
     to: '/events/new',
   },
+  {
+    label: 'Eksportuj do pdf',
+    icon: 'i-mdi-file-pdf',
+    to: '/events/pdf',
+  },
 ])
 </script>
 

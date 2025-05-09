@@ -31,8 +31,21 @@ export const useEventStore = defineStore('eventStore', () => {
     }
   }
 
-  const getEventPdf = async () => {
-    console.log('getEventPdf')
+  const getEventPdf = async (month: number, year: number) => {
+    try {
+      const { data } = await useFetch('/api/events/pdf', {
+        method: 'GET',
+        query: { month: month, year: year },
+      })
+      const blob = data.value
+      if (blob instanceof Blob) {
+        const url = URL.createObjectURL(blob)
+        window.open(url, '_blank')
+      }
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
 
   const getEventsByDate = async (dateString: string) => {
@@ -78,7 +91,11 @@ export const useEventStore = defineStore('eventStore', () => {
   }
 
   const eventId = ref(0)
-  const { data: singleEvent, refresh: refreshSingleEvent, error: errorFetchSingleEvent } = useFetch<BaseEvent>('/api/events/single', {
+  const {
+    data: singleEvent,
+    refresh: refreshSingleEvent,
+    error: errorFetchSingleEvent,
+  } = useFetch<BaseEvent>('/api/events/single', {
     query: { id: eventId },
     // @ts-expect-error silence transform type error
     transform: response => response.data,
