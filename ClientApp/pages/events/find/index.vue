@@ -2,6 +2,9 @@
 import type { Event } from '~/types'
 
 const eventData = ref<Event>()
+
+const eventStore = useEventStore()
+eventStore.clearEventsList()
 </script>
 
 <template>

@@ -3,6 +3,10 @@ import type { Event } from '~/types'
 export const useEventStore = defineStore('eventStore', () => {
   const events = ref<Event[]>([])
 
+  const clearEventsList = () => {
+    events.value.length = 0
+  }
+
   const addEvent = async (event: Event) => {
     try {
       await useFetch('/api/events', {
@@ -73,5 +77,6 @@ export const useEventStore = defineStore('eventStore', () => {
     getEventsByDate,
     getEventsByName,
     getEventsByWeek,
+    clearEventsList,
   }
 })

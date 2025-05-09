@@ -5,7 +5,7 @@ defineProps<Event>()
 </script>
 
 <template>
-  <div class="w-1/4 shadow-lg p-4 space-y-1 rounded-lg">
+  <div class="shadow-lg p-4 space-y-1 rounded-lg mx-4 my-4">
     <AtomsSubHeading v-if="name">
       {{ name }}
     </AtomsSubHeading>

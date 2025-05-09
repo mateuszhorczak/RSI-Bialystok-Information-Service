@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const eventStore = useEventStore()
+eventStore.clearEventsList()
 </script>
 
 <template>
