@@ -19,8 +19,6 @@ import java.util.Locale;
 
 public class EventsReportPdfGenerator {
     private static final float MARGIN = 50;
-    //private static final PDType1Font HEADER_FONT = PDType1Font.HELVETICA_BOLD;
-    //private static final PDType1Font BODY_FONT = PDType1Font.HELVETICA;
 
     private static final PDType1Font HEADER_FONT = new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
     private static final PDType1Font BODY_FONT = new PDType1Font(Standard14Fonts.FontName.HELVETICA);
@@ -146,18 +144,11 @@ public class EventsReportPdfGenerator {
 
 
         String[] columns = {
-                //String.valueOf(event.getDescription()),
-               // event.getName(),
-                //event.getType().toString(),
-                //truncateText(event.getDescription(), 35),
-                //event.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm", Locale.ENGLISH))
-                "1",
-                //String.valueOf(event.getDescription()), // Uwaga: to wygląda na błąd - description w polu ID?
+                String.valueOf(event.getId()),
                 event.getName(),
-                event.getType().toString(),
+                event.getType(),
                 truncateText(event.getDescription(), 35),
                 dateStr
-                //event.getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)) // Usunięto HH:mm
         };
 
         float xPosition = MARGIN + 5;
