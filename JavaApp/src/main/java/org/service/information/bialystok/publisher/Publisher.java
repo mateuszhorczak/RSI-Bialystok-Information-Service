@@ -16,9 +16,9 @@ import javax.net.ssl.TrustManagerFactory;
 public class Publisher {
     public static void main(String[] args) throws Exception {
         // 1. Załaduj keystore
-        char[] password = "haslo123".toCharArray();
-        KeyStore ks = KeyStore.getInstance("JKS");
-        ks.load(Publisher.class.getResourceAsStream("/keystore.jks"), password);
+        char[] password = "changeit".toCharArray();
+        KeyStore ks = KeyStore.getInstance("PKCS12");
+        ks.load(Publisher.class.getResourceAsStream("/keystore.p12"), password);
 
         // 2. Skonfiguruj KeyManager
         KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
